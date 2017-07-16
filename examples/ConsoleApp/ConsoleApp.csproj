@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="..\ConsoleApp452\Demo.cs" Link="Demo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="certificate_pub.crt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

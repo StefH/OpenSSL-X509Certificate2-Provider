@@ -31,15 +31,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net45;netstandard1.3</TargetFrameworks>
+    <TargetFrameworks>net20;net35;net45;netstandard1.3</TargetFrameworks>
     <RootNamespace>OpenSSL.X509Certificate2Provider</RootNamespace>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net35'">
+  <!--<PropertyGroup Condition="'$(TargetFramework)' == 'net35'">
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <DefineConstants>NET35</DefineConstants>
     <FrameworkPathOverride>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
-  </PropertyGroup>
+  </PropertyGroup>-->
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
     <DefineConstants>NETSTANDARD</DefineConstants>
