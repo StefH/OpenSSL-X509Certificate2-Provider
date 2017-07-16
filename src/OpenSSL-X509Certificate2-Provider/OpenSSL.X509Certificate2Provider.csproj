@@ -13,6 +13,7 @@
     <PackageReleaseNotes>Bugfixes and new Features. For details see the release notes.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/StefH/OpenSSL-X509Certificate2-Provider</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/OpenSSL-X509Certificate2-Provider/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/StefH/OpenSSL-X509Certificate2-Provider/master/images/certificate.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/StefH/OpenSSL-X509Certificate2-Provider</RepositoryUrl>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -26,6 +27,7 @@
     <GenerateAssemblyFileVersionAttribute>true</GenerateAssemblyFileVersionAttribute>
     <DefaultLanguage>en-us</DefaultLanguage>
     <DebugType>full</DebugType>
+    <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup>
