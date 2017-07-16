@@ -14,8 +14,13 @@ namespace OpenSSL.X509Certificate2Provider
         X509Certificate2 Certificate { get; }
 
         /// <summary>
-        /// Gets the PrivateKey
+        /// Gets the PrivateKey object.
         /// </summary>
         RSACryptoServiceProvider PrivateKey { get; }
+
+        /// <summary>
+        /// Gets the PublicKey object.
+        /// </summary>
+        RSACryptoServiceProvider PublicKey { get; }
     }
 }

@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenSSL.X509Certificate2Pro
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8A9B95AB-7BFA-43F8-A001-9873F18F9534}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9BB037AA-C636-4732-9573-914F5BE29F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "examples\ConsoleApp\ConsoleApp.csproj", "{5E14342F-0878-41DA-A3D6-3A25E044CF17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp452", "examples\ConsoleApp452\ConsoleApp452.csproj", "{0726E037-FD07-43DA-B746-BFBA1A932611}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +23,21 @@ Global
 		{CB7AD528-D24B-4D2E-AFBF-56FA40C48985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB7AD528-D24B-4D2E-AFBF-56FA40C48985}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB7AD528-D24B-4D2E-AFBF-56FA40C48985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E14342F-0878-41DA-A3D6-3A25E044CF17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E14342F-0878-41DA-A3D6-3A25E044CF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E14342F-0878-41DA-A3D6-3A25E044CF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E14342F-0878-41DA-A3D6-3A25E044CF17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0726E037-FD07-43DA-B746-BFBA1A932611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0726E037-FD07-43DA-B746-BFBA1A932611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0726E037-FD07-43DA-B746-BFBA1A932611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0726E037-FD07-43DA-B746-BFBA1A932611}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CB7AD528-D24B-4D2E-AFBF-56FA40C48985} = {8A9B95AB-7BFA-43F8-A001-9873F18F9534}
+		{5E14342F-0878-41DA-A3D6-3A25E044CF17} = {9BB037AA-C636-4732-9573-914F5BE29F89}
+		{0726E037-FD07-43DA-B746-BFBA1A932611} = {9BB037AA-C636-4732-9573-914F5BE29F89}
 	EndGlobalSection
 EndGlobal

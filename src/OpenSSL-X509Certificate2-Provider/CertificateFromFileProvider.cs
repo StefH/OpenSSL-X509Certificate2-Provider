@@ -18,6 +18,12 @@ namespace OpenSSL.X509Certificate2Provider
         public CertificateFromFileProvider([NotNull] string certificateText, [NotNull] string privateKeyText)
         {
             Certificate = new X509Certificate2(GetPublicKeyBytes(certificateText));
+#if NETSTANDARD
+            PublicKey = (RSACryptoServiceProvider)Certificate.GetRSAPublicKey();
+#else
+            PublicKey = (RSACryptoServiceProvider)Certificate.PublicKey.Key;
+#endif
+
             PrivateKey = DecodePrivateKey(privateKeyText);
 
 #if !NETSTANDARD
@@ -34,5 +40,10 @@ namespace OpenSSL.X509Certificate2Provider
         /// Gets the PrivateKey object.
         /// </summary>
         public RSACryptoServiceProvider PrivateKey { get; }
+
+        /// <summary>
+        /// Gets the PublicKey object.
+        /// </summary>
+        public RSACryptoServiceProvider PublicKey { get; }
     }
 }

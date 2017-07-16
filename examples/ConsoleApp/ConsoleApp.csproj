@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net452</TargetFramework>
+    <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="certificate_pub.crt" />
+    <None Remove="private.key" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="certificate_pub.crt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="private.key">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\OpenSSL-X509Certificate2-Provider\OpenSSL.X509Certificate2Provider.csproj" />
+  </ItemGroup>
+
+</Project>
