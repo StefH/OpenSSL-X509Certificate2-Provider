@@ -35,7 +35,7 @@
     <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleApp.Program</StartupObject>
+    <StartupObject>ConsoleApp452.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

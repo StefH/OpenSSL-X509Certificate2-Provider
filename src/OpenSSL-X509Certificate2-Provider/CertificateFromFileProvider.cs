@@ -24,7 +24,8 @@ namespace OpenSSL.X509Certificate2Provider
             PublicKey = (RSACryptoServiceProvider)Certificate.PublicKey.Key;
 #endif
 
-            PrivateKey = DecodePrivateKey(privateKeyText);
+            IPrivateKeyDecoder decoder = new PrivateKeyDecoder();
+            PrivateKey = decoder.Decode(privateKeyText);
 
 #if !NETSTANDARD
             Certificate.PrivateKey = PrivateKey;

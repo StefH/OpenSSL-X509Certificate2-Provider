@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml.Linq;
 using OpenSSL.X509Certificate2Provider;
 
-namespace ConsoleApp
+namespace ConsoleApp452
 {
     static class Program
     {
