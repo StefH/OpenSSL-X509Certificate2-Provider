@@ -1,12 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography;
+using JetBrains.Annotations;
 
 namespace OpenSSL.X509Certificate2Provider
 {
     /// <summary>
     /// PrivateKeyDecoder
     /// </summary>
+    [PublicAPI]
     public sealed class PrivateKeyDecoder : IPrivateKeyDecoder
     {
         // encoded OID sequence for PKCS #1 rsaEncryption szOID_RSA_RSA = "1.2.840.113549.1.1.1", including the sequence byte and terminal encoded null
