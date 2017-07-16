@@ -67,8 +67,5 @@
       <Name>OpenSSL.X509Certificate2Provider</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="certificate.ico" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
