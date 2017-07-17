@@ -42,6 +42,38 @@ namespace ConsoleApp452
             Console.WriteLine("VerifyHash: {0}", verifyHashResult);
         }
 
+        public static void TestX509Certificate2WithRsa()
+        {
+            Console.WriteLine("TestX509Certificate2WithRSA");
+
+            // Generated using:
+            // openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout private.key -out certificate_pub.crt
+            string certificateText = File.ReadAllText("certificate_pub.crt");
+            string privateKeyText = File.ReadAllText("private_rsa.key");
+
+            ICertificateProvider provider = new CertificateFromFileProvider(certificateText, privateKeyText);
+            X509Certificate2 certificate = provider.Certificate;
+
+            Console.WriteLine("X509Certificate2:");
+            Console.WriteLine(certificate);
+            Console.WriteLine();
+            Console.WriteLine("PrivateKey:");
+            RSACryptoServiceProvider cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PrivateKey;
+            ShowRSAProperties(cryptoServiceProvider);
+
+            var xml = XDocument.Parse(cryptoServiceProvider.ToXmlString(true));
+            Console.WriteLine(xml.ToString());
+
+            // Sign the data
+            byte[] hello = new UTF8Encoding().GetBytes("Hello World");
+            byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
+
+            RSACryptoServiceProvider publicKey = provider.PublicKey;
+            bool verifyHashResult = publicKey.VerifyData(hello, CryptoConfig.MapNameToOID("SHA256"), hashValue);
+            Console.WriteLine();
+            Console.WriteLine("VerifyHash: {0}", verifyHashResult);
+        }
+
         public static void TestPrivateKey()
         {
             Console.WriteLine("TestPrivateKey");
@@ -53,6 +85,22 @@ namespace ConsoleApp452
 
             // Sign the data
             byte[] hello = new UTF8Encoding().GetBytes("Hello World");
+            byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
+
+            ShowBytes("hashValue", hashValue);
+        }
+
+        public static void TestPrivateRsaKey()
+        {
+            Console.WriteLine("TestPrivateRsaKey");
+
+            string privateKeyText = File.ReadAllText("private_rsa.key");
+
+            IPrivateKeyDecoder decoder = new PrivateKeyDecoder();
+            RSACryptoServiceProvider cryptoServiceProvider = decoder.Decode(privateKeyText);
+
+            // Sign the data
+            byte[] hello = new UTF8Encoding().GetBytes("Hello World RSA");
             byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
 
             ShowBytes("hashValue", hashValue);
