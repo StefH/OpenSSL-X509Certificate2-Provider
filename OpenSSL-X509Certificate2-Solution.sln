@@ -8,6 +8,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8A9B95AB-7BFA-43F8-A001-9873F18F9534}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9BB037AA-C636-4732-9573-914F5BE29F89}"
+	ProjectSection(SolutionItems) = preProject
+		examples\certificate_pub.crt = examples\certificate_pub.crt
+		examples\private.key = examples\private.key
+		examples\private_rsa.key = examples\private_rsa.key
+		examples\pwd_certificate_pub.crt = examples\pwd_certificate_pub.crt
+		examples\pwd_private.key = examples\pwd_private.key
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "examples\ConsoleApp\ConsoleApp.csproj", "{5E14342F-0878-41DA-A3D6-3A25E044CF17}"
 EndProject

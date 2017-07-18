@@ -34,6 +34,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net20;net35;net45;netstandard1.3</TargetFrameworks>
+    <!--<TargetFrameworks>net35;net45;netstandard1.3</TargetFrameworks>-->
+    <!--<TargetFrameworks>netstandard1.3</TargetFrameworks>-->
     <RootNamespace>OpenSSL.X509Certificate2Provider</RootNamespace>
   </PropertyGroup>
 
@@ -49,6 +51,7 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
     <PackageReference Include="System.Security.Cryptography.Csp" Version="4.3.0" />
+    <PackageReference Include="System.Security.SecureString" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

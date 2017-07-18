@@ -74,6 +74,40 @@ namespace ConsoleApp452
             Console.WriteLine("VerifyHash: {0}", verifyHashResult);
         }
 
+        public static void TestX509Certificate2WithEncryptedPrivateKey()
+        {
+            Console.WriteLine("TestX509Certificate2WithEncryptedPrivateKey");
+
+            // Generated using:
+            // openssl req -x509 -sha256 -days 365 -newkey rsa:2048 -keyout pwd_private_temp.key -out pwd_certificate_pub.crt
+            // openssl pkcs8 -topk8 -in pwd_private_temp.key -out pwd_private.key
+            // password = abc123
+            string certificateText = File.ReadAllText("pwd_certificate_pub.crt");
+            string privateKeyText = File.ReadAllText("pwd_private.key");
+
+            ICertificateProvider provider = new CertificateFromFileProvider(certificateText, privateKeyText, SecureStringUtils.Encrypt("abc123"));
+            X509Certificate2 certificate = provider.Certificate;
+
+            Console.WriteLine("X509Certificate2:");
+            Console.WriteLine(certificate);
+            Console.WriteLine();
+            Console.WriteLine("PrivateKey:");
+            RSACryptoServiceProvider cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PrivateKey;
+            ShowRSAProperties(cryptoServiceProvider);
+
+            var xml = XDocument.Parse(cryptoServiceProvider.ToXmlString(true));
+            Console.WriteLine(xml.ToString());
+
+            // Sign the data
+            byte[] hello = new UTF8Encoding().GetBytes("Hello World");
+            byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
+
+            RSACryptoServiceProvider publicKey = provider.PublicKey;
+            bool verifyHashResult = publicKey.VerifyData(hello, CryptoConfig.MapNameToOID("SHA256"), hashValue);
+            Console.WriteLine();
+            Console.WriteLine("VerifyHash: {0}", verifyHashResult);
+        }
+
         public static void TestPrivateKey()
         {
             Console.WriteLine("TestPrivateKey");
