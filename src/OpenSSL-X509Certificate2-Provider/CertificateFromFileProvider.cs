@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using JetBrains.Annotations;
+using OpenSSL.PrivateKeyDecoder;
 
 namespace OpenSSL.X509Certificate2Provider
 {
@@ -26,7 +27,7 @@ namespace OpenSSL.X509Certificate2Provider
             PublicKey = (RSACryptoServiceProvider)Certificate.PublicKey.Key;
 #endif
 
-            IPrivateKeyDecoder decoder = new PrivateKeyDecoder();
+            IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
             PrivateKey = decoder.Decode(privateKeyText, securePassword);
 
 #if !NETSTANDARD

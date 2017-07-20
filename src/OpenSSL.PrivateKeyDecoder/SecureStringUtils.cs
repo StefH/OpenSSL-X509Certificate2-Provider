@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using JetBrains.Annotations;
 
-namespace OpenSSL.X509Certificate2Provider
+namespace OpenSSL.PrivateKeyDecoder
 {
     /// <summary>
     /// SecureString Utility methods

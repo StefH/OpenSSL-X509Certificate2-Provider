@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenSSL.X509Certificate2Provider
+namespace OpenSSL.PrivateKeyDecoder
 {
     internal static class TextUtil
     {

@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
+using OpenSSL.PrivateKeyDecoder;
 using OpenSSL.X509Certificate2Provider;
 
 namespace ConsoleApp452
@@ -114,7 +115,7 @@ namespace ConsoleApp452
 
             string privateKeyText = File.ReadAllText("private.key");
 
-            IPrivateKeyDecoder decoder = new PrivateKeyDecoder();
+            IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
             RSACryptoServiceProvider cryptoServiceProvider = decoder.Decode(privateKeyText);
 
             // Sign the data
@@ -130,7 +131,7 @@ namespace ConsoleApp452
 
             string privateKeyText = File.ReadAllText("private_rsa.key");
 
-            IPrivateKeyDecoder decoder = new PrivateKeyDecoder();
+            IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
             RSACryptoServiceProvider cryptoServiceProvider = decoder.Decode(privateKeyText);
 
             // Sign the data

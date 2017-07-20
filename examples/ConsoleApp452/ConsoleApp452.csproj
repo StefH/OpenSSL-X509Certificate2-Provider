@@ -80,6 +80,10 @@
       <Project>{cb7ad528-d24b-4d2e-afbf-56fa40c48985}</Project>
       <Name>OpenSSL.X509Certificate2Provider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\OpenSSL.PrivateKeyDecoder\OpenSSL.PrivateKeyDecoder.csproj">
+      <Project>{095ae67b-6ce2-4002-86fc-33186d110eed}</Project>
+      <Name>OpenSSL.PrivateKeyDecoder</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,12 +2,12 @@
 using JetBrains.Annotations;
 using System.Security.Cryptography;
 
-namespace OpenSSL.X509Certificate2Provider
+namespace OpenSSL.PrivateKeyDecoder
 {
     /// <summary>
-    /// IPrivateKeyDecoder
+    /// IOpenSSLPrivateKeyDecoder
     /// </summary>
-    public interface IPrivateKeyDecoder
+    public interface IOpenSSLPrivateKeyDecoder
     {
         /// <summary>
         /// Decode PrivateKey

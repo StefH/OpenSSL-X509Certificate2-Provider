@@ -4,13 +4,13 @@ using System.Security;
 using System.Security.Cryptography;
 using JetBrains.Annotations;
 
-namespace OpenSSL.X509Certificate2Provider
+namespace OpenSSL.PrivateKeyDecoder
 {
     /// <summary>
-    /// PrivateKeyDecoder
+    /// OpenSSLPrivateKeyDecoder
     /// </summary>
     [PublicAPI]
-    public sealed class PrivateKeyDecoder : IPrivateKeyDecoder
+    public sealed class OpenSSLPrivateKeyDecoder : IOpenSSLPrivateKeyDecoder
     {
         // 1.2.840.113549.1.1.1 - RSA encryption, including the sequence byte and terminal encoded null
         private readonly byte[] OIDRSAEncryption = { 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01, 0x05, 0x00 };
@@ -51,8 +51,7 @@ namespace OpenSSL.X509Certificate2Provider
 
             if (text.StartsWith(PrivateEncryptedKeyHeader) && text.EndsWith(PrivateEncryptedKeyFooter))
             {
-                byte[] data = TextUtil.ExtractBytes(text, PrivateEncryptedKeyHeader, PrivateEncryptedKeyFooter);
-                return DecodeEncryptedPrivateKey(data, password);
+                throw new NotSupportedException("Not yet possible to decrypted a password protected key like : ENCRYPTED PRIVATE KEY");
             }
 
             throw new NotSupportedException();
