@@ -1,6 +1,8 @@
-﻿using System.Security.Cryptography;
+﻿using System.Security;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using JetBrains.Annotations;
+using OpenSSL.PrivateKeyDecoder;
 
 namespace OpenSSL.X509Certificate2Provider
 {
@@ -15,7 +17,8 @@ namespace OpenSSL.X509Certificate2Provider
         /// </summary>
         /// <param name="certificateText">The certificate or public key text.</param>
         /// <param name="privateKeyText">The private (rsa) key text.</param>
-        public CertificateFromFileProvider([NotNull] string certificateText, [NotNull] string privateKeyText)
+        /// <param name="securePassword">The optional securePassword to decrypt the private key.</param>
+        public CertificateFromFileProvider([NotNull] string certificateText, [NotNull] string privateKeyText, [CanBeNull] SecureString securePassword = null)
         {
             Certificate = new X509Certificate2(GetPublicKeyBytes(certificateText));
 #if NETSTANDARD
@@ -24,8 +27,8 @@ namespace OpenSSL.X509Certificate2Provider
             PublicKey = (RSACryptoServiceProvider)Certificate.PublicKey.Key;
 #endif
 
-            IPrivateKeyDecoder decoder = new PrivateKeyDecoder();
-            PrivateKey = decoder.Decode(privateKeyText);
+            IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
+            PrivateKey = decoder.Decode(privateKeyText, securePassword);
 
 #if !NETSTANDARD
             Certificate.PrivateKey = PrivateKey;
