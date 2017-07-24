@@ -7,10 +7,10 @@ Parses OpenSSL public and private key components and returns a **X509Certificate
 | OpenSSL.X509Certificate2.Provider | [![NuGet Badge](https://buildstats.info/nuget/OpenSSL.X509Certificate2.Provider)](https://www.nuget.org/packages/OpenSSL.X509Certificate2.Provider) |
 
 Support for the following frameworks:
-* NET 2.0
-* NET 3.5
-* NET 4.5 and up
-* NETStandard 1.3
+* .NET 2.0
+* .NET 3.5
+* .NET 4.5 and up
+* .NET Standard 1.3
 
 Support for decoding `RSA Private Key` and `Private Key`.
 
@@ -34,7 +34,7 @@ RSACryptoServiceProvider cryptoServiceProvider = decoder.Decode(privateKeyText);
 byte[] hello = new UTF8Encoding().GetBytes("Hello World");
 byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
 
-// Example: use the PrivateKey from the certificate above for signing a JWT token using Jose.Jwt:
+// Example: use the PrivateKey from above for signing a JWT token using Jose.Jwt:
 string token = Jose.JWT.Encode(payload, cryptoServiceProvider, JwsAlgorithm.RS256);
 ```
 
