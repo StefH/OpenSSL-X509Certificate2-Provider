@@ -1,5 +1,5 @@
 # OpenSSL X509Certificate2 Provider
-Parses OpenSSL public and private key components and returns a **X509Certificate2** with **RSACryptoServiceProvider**. (Based on http://www.jensign.com/opensslkey/opensslkey.cs)
+Parses OpenSSL public and private key components and returns a **X509Certificate2** with **RSA/RSACryptoServiceProvider**. (Based on http://www.jensign.com/opensslkey/opensslkey.cs)
 
 | Project | NuGet |
 | ------- | ----- |
@@ -10,7 +10,8 @@ Support for the following frameworks:
 * .NET 2.0
 * .NET 3.5
 * .NET 4.5 and up
-* .NET Standard 1.3
+* .NET Standard 1.3 (also NET Core 1.1)
+* .NET Standard 2.0 (also NET Core 2.0)
 
 Support for decoding `RSA Private Key` and `Private Key`.
 

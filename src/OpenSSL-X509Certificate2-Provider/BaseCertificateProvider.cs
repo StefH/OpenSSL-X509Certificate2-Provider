@@ -21,6 +21,11 @@ namespace OpenSSL.X509Certificate2Provider
         /// <returns>byte array</returns>
         protected byte[] GetPublicKeyBytes([NotNull] string publicText)
         {
+            if (publicText == null)
+            {
+                throw new ArgumentNullException(nameof(publicText));
+            }
+
             string text = publicText.Trim();
             if (text.StartsWith(PublicKeyHeader) && text.EndsWith(PublicKeyFooter))
             {

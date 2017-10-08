@@ -36,6 +36,11 @@ namespace OpenSSL.PrivateKeyDecoder
         /// <returns>RSACryptoServiceProvider</returns>
         public RSACryptoServiceProvider Decode(string privateText, SecureString password = null)
         {
+            if (privateText == null)
+            {
+                throw new ArgumentNullException(nameof(privateText));
+            }
+
             string text = privateText.Trim();
             if (text.StartsWith(RSAPrivateKeyHeader) && text.EndsWith(RSAPrivateKeyFooter))
             {

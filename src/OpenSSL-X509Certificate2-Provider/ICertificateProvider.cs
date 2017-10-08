@@ -21,6 +21,10 @@ namespace OpenSSL.X509Certificate2Provider
         /// <summary>
         /// Gets the PublicKey object.
         /// </summary>
+#if NETSTANDARD
+        RSA PublicKey { get; }
+#else
         RSACryptoServiceProvider PublicKey { get; }
+#endif
     }
 }

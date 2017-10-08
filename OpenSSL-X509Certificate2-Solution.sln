@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenSSL.X509Certificate2Provider", "src\OpenSSL-X509Certificate2-Provider\OpenSSL.X509Certificate2Provider.csproj", "{CB7AD528-D24B-4D2E-AFBF-56FA40C48985}"
 EndProject
@@ -25,7 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenSSL.PrivateKeyDecoder", "src\OpenSSL.PrivateKeyDecoder\OpenSSL.PrivateKeyDecoder.csproj", "{095AE67B-6CE2-4002-86FC-33186D110EED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenSSL.PrivateKeyDecoder", "src\OpenSSL.PrivateKeyDecoder\OpenSSL.PrivateKeyDecoder.csproj", "{095AE67B-6CE2-4002-86FC-33186D110EED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppNetCore", "examples\ConsoleAppNetCore\ConsoleAppNetCore.csproj", "{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{095AE67B-6CE2-4002-86FC-33186D110EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{095AE67B-6CE2-4002-86FC-33186D110EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{095AE67B-6CE2-4002-86FC-33186D110EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,9 @@ Global
 		{5E14342F-0878-41DA-A3D6-3A25E044CF17} = {9BB037AA-C636-4732-9573-914F5BE29F89}
 		{0726E037-FD07-43DA-B746-BFBA1A932611} = {9BB037AA-C636-4732-9573-914F5BE29F89}
 		{095AE67B-6CE2-4002-86FC-33186D110EED} = {8A9B95AB-7BFA-43F8-A001-9873F18F9534}
+		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48} = {9BB037AA-C636-4732-9573-914F5BE29F89}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0E9F0E2-0C5D-441B-854E-F1721CEC88C4}
 	EndGlobalSection
 EndGlobal
