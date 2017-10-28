@@ -12,7 +12,7 @@ namespace ConsoleAppNetCore
             //Console.WriteLine(new string('-', 80));
             ////Demo.TestX509Certificate2WithEncryptedPrivateKey();
             //Console.WriteLine(new string('-', 80));
-            //Demo.TestPrivateKey();
+            Demo.TestPrivateKey();
             //Console.WriteLine(new string('-', 80));
             //Demo.TestPrivateRsaKey();
         }

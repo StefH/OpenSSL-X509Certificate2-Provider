@@ -28,13 +28,19 @@ namespace OpenSSL.PrivateKeyDecoder
         private const string PrivateEncryptedKeyHeader = "-----BEGIN ENCRYPTED PRIVATE KEY-----";
         private const string PrivateEncryptedKeyFooter = "-----END ENCRYPTED PRIVATE KEY-----";
 
-        /// <summary>
-        /// Decode PrivateKey
-        /// </summary>
-        /// <param name="privateText">The private (rsa) key text.</param>
-        /// <param name="password">The optional securePassword to decrypt this private key.</param>
-        /// <returns>RSACryptoServiceProvider</returns>
+        /// <inheritdoc cref="IOpenSSLPrivateKeyDecoder.Decode"/>
         public RSACryptoServiceProvider Decode(string privateText, SecureString password = null)
+        {
+            var rsaParameters = DecodeParameters(privateText, password);
+
+            // Create RSACryptoServiceProvider instance
+            var rsaCryptoServiceProvider = new RSACryptoServiceProvider();
+            rsaCryptoServiceProvider.ImportParameters(rsaParameters);
+            return rsaCryptoServiceProvider;
+        }
+
+        /// <inheritdoc cref="IOpenSSLPrivateKeyDecoder.DecodeParameters"/>
+        public RSAParameters DecodeParameters(string privateText, SecureString password = null)
         {
             if (privateText == null)
             {
@@ -62,7 +68,7 @@ namespace OpenSSL.PrivateKeyDecoder
             throw new NotSupportedException();
         }
 
-        private RSACryptoServiceProvider DecodeEncryptedPrivateKey(byte[] encpkcs8, SecureString securePassword)
+        private RSAParameters DecodeEncryptedPrivateKey(byte[] encpkcs8, SecureString securePassword)
         {
             var memoryStream = new MemoryStream(encpkcs8);
             using (var binr = new BinaryReader(memoryStream))
@@ -77,7 +83,7 @@ namespace OpenSSL.PrivateKeyDecoder
                         binr.ReadInt16(); // advance 2 bytes
                         break;
                     default:
-                        return null;
+                        return default(RSAParameters);
                 }
 
                 twobytes = binr.ReadUInt16(); // inner sequence
@@ -94,7 +100,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 byte[] seq = binr.ReadBytes(11);
                 if (!CompareByteArrays(seq, OIDpkcs5PBES2)) // is it a OIDpkcs5PBES2 ?
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 twobytes = binr.ReadUInt16(); // inner sequence for pswd salt
@@ -122,7 +128,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 seq = binr.ReadBytes(11); // read the Sequence OID
                 if (!CompareByteArrays(seq, OIDpkcs5PBKDF2)) // is it a OIDpkcs5PBKDF2 ?
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 twobytes = binr.ReadUInt16();
@@ -139,7 +145,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 byte bt = binr.ReadByte();
                 if (bt != 0x04) // expect octet string for salt
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 int saltsize = binr.ReadByte();
@@ -148,7 +154,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 bt = binr.ReadByte();
                 if (bt != 0x02) // expect an integer for PBKF2 interation count
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 int itbytes = binr.ReadByte(); // PBKD2 iterations should fit in 2 bytes.
@@ -162,7 +168,7 @@ namespace OpenSSL.PrivateKeyDecoder
                         iterations = 256 * binr.ReadByte() + binr.ReadByte();
                         break;
                     default:
-                        return null;
+                        return default(RSAParameters);
                 }
 
                 twobytes = binr.ReadUInt16();
@@ -179,13 +185,13 @@ namespace OpenSSL.PrivateKeyDecoder
                 byte[] seqdes = binr.ReadBytes(10);
                 if (!CompareByteArrays(seqdes, OIDdesEDE3CBC)) // is it a OIDdes-EDE3-CBC ?
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 bt = binr.ReadByte();
                 if (bt != 0x04) // expect octet string for IV
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 int ivsize = binr.ReadByte();
@@ -194,7 +200,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 bt = binr.ReadByte();
                 if (bt != 0x04) // expect octet string for encrypted PKCS8 data
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 bt = binr.ReadByte();
@@ -216,7 +222,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 byte[] pkcs8 = DecryptPBDK2(encryptedpkcs8, salt, IV, securePassword, iterations);
                 if (pkcs8 == null) // probably a bad securePassword entered
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 //----- With a decrypted pkcs #8 PrivateKeyInfo blob, decode it to an RSA ---
@@ -227,7 +233,6 @@ namespace OpenSSL.PrivateKeyDecoder
         /// <summary>
         /// Uses PBKD2 to derive a 3DES key and decrypts data
         /// </summary>
-        /// <returns>byte array</returns>
         private byte[] DecryptPBDK2(byte[] edata, byte[] salt, byte[] IV, SecureString securePassword, int iterations)
         {
             byte[] psbytes = SecureStringUtils.Decrypt(securePassword);
@@ -244,14 +249,13 @@ namespace OpenSSL.PrivateKeyDecoder
             {
                 decrypt.Write(edata, 0, edata.Length);
                 decrypt.Flush();
-                //decrypt.Close(); // this is REQUIRED
-                // decrypt.Close(); // this is REQUIRED
+                // decrypt.Close(); // this is REQUIRED ?
             }
 
             return memoryStream.ToArray();
         }
 
-        private RSACryptoServiceProvider DecodePrivateKey(byte[] pkcs8)
+        private RSAParameters DecodePrivateKey(byte[] pkcs8)
         {
             // read the asn.1 encoded SubjectPublicKeyInfo blob
             var memoryStream = new MemoryStream(pkcs8);
@@ -270,31 +274,31 @@ namespace OpenSSL.PrivateKeyDecoder
                 }
                 else
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 byte bt = reader.ReadByte();
                 if (bt != 0x02)
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 twobytes = reader.ReadUInt16();
                 if (twobytes != 0x0001)
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 byte[] seq = reader.ReadBytes(15);
                 if (!CompareByteArrays(seq, OIDRSAEncryption)) // make sure Sequence for OID is correct
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 bt = reader.ReadByte();
                 if (bt != 0x04) // expect an Octet string 
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 bt = reader.ReadByte(); // read next byte, or next 2 bytes is  0x81 or 0x82; otherwise bt is the byte count
@@ -313,7 +317,7 @@ namespace OpenSSL.PrivateKeyDecoder
             }
         }
 
-        private RSACryptoServiceProvider DecodeRSAPrivateKey(byte[] privkey)
+        private RSAParameters DecodeRSAPrivateKey(byte[] privkey)
         {
             // decode the asn.1 encoded RSA private key
             var memoryStream = new MemoryStream(privkey);
@@ -330,22 +334,22 @@ namespace OpenSSL.PrivateKeyDecoder
                 }
                 else
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 twobytes = reader.ReadUInt16();
                 if (twobytes != 0x0102) // version number
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
                 byte bt = reader.ReadByte();
                 if (bt != 0x00)
                 {
-                    return null;
+                    return default(RSAParameters);
                 }
 
-                // all private key components are Integer sequences
+                // All private key components are Integer sequences
                 var rsaParameters = new RSAParameters();
 
                 int elems = GetIntegerSize(reader);
@@ -372,10 +376,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 elems = GetIntegerSize(reader);
                 rsaParameters.InverseQ = reader.ReadBytes(elems);
 
-                // create RSACryptoServiceProvider instance
-                var rsaCryptoServiceProvider = new RSACryptoServiceProvider();
-                rsaCryptoServiceProvider.ImportParameters(rsaParameters);
-                return rsaCryptoServiceProvider;
+                return rsaParameters;
             }
         }
 

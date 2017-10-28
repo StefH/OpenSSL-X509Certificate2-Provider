@@ -125,6 +125,26 @@ namespace ConsoleApp452
             ShowBytes("hashValue", hashValue);
         }
 
+
+        public static void TestPrivateKeyRSAParameters()
+        {
+            Console.WriteLine("TestPrivateKeyRSAParameters");
+
+            string privateKeyText = File.ReadAllText("private.key");
+
+            IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
+            RSAParameters rsaParameters = decoder.DecodeParameters(privateKeyText);
+
+            var cryptoServiceProvider = new RSACryptoServiceProvider();
+            cryptoServiceProvider.ImportParameters(rsaParameters);
+
+            // Sign the data
+            byte[] hello = new UTF8Encoding().GetBytes("Hello World");
+            byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
+
+            ShowBytes("hashValue", hashValue);
+        }
+
         public static void TestPrivateRsaKey()
         {
             Console.WriteLine("TestPrivateRsaKey");

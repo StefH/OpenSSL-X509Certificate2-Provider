@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
+using OpenSSL.PrivateKeyDecoder;
 using OpenSSL.X509Certificate2Provider;
 
 namespace ConsoleAppNetCore
@@ -107,21 +108,21 @@ namespace ConsoleAppNetCore
         //    Console.WriteLine("VerifyHash: {0}", verifyHashResult);
         //}
 
-        //public static void TestPrivateKey()
-        //{
-        //    Console.WriteLine("TestPrivateKey");
+        public static void TestPrivateKey()
+        {
+            Console.WriteLine("TestPrivateKey");
 
-        //    string privateKeyText = File.ReadAllText("private.key");
+            string privateKeyText = File.ReadAllText("private.key");
 
-        //    IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
-        //    RSACryptoServiceProvider cryptoServiceProvider = decoder.Decode(privateKeyText);
+            IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
+            RSACryptoServiceProvider cryptoServiceProvider = decoder.Decode(privateKeyText);
 
-        //    // Sign the data
-        //    byte[] hello = new UTF8Encoding().GetBytes("Hello World");
-        //    byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
+            // Sign the data
+            byte[] hello = new UTF8Encoding().GetBytes("Hello World");
+            // byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
 
-        //    ShowBytes("hashValue", hashValue);
-        //}
+            // ShowBytes("hashValue", hashValue);
+        }
 
         //public static void TestPrivateRsaKey()
         //{

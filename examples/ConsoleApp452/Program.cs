@@ -14,6 +14,8 @@ namespace ConsoleApp452
             Console.WriteLine(new string('-', 80));
             Demo.TestPrivateKey();
             Console.WriteLine(new string('-', 80));
+            Demo.TestPrivateKeyRSAParameters();
+            Console.WriteLine(new string('-', 80));
             Demo.TestPrivateRsaKey();
         }
     }

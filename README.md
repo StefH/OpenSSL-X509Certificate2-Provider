@@ -23,8 +23,19 @@ Generate public certificate + privatekey using:
 openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout private.key -out certificate_pub.crt
 ```
 
-### Code example 1 - decode private key
-If you just want to decode the private key into a RSACryptoServiceProvider, use the following code:
+### Code example 1 - decode private key into RSAParameters
+If you just want to decode the private key into RSAParameters, use the following code:
+```csharp
+string privateKeyText = File.ReadAllText("private.key");
+
+IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
+RSAParameters parameters = decoder.DecodeParameters(privateKeyText);
+
+// do something with the parameters ...
+```
+
+### Code example 2 - decode private key into a RSACryptoServiceProvider
+If you want to decode the private key into a RSACryptoServiceProvider, use the following code:
 ```csharp
 string privateKeyText = File.ReadAllText("private.key");
 
@@ -39,7 +50,7 @@ byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToO
 string token = Jose.JWT.Encode(payload, cryptoServiceProvider, JwsAlgorithm.RS256);
 ```
 
-### Code example 2 - Create a X509 certificate and add private key
+### Code example 3 - Create a X509 certificate and add private key
 ```csharp
 string certificateText = File.ReadAllText("certificate_pub.crt");
 string privateKeyText = File.ReadAllText("private.key");

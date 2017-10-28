@@ -8,7 +8,7 @@
     <AssemblyName>OpenSSL.PrivateKeyDecoder</AssemblyName>
     <Description>Parses an OpenSSL private (rsa) key component and returns a RSACryptoServiceProvider.</Description>
     <Summary>Parses an OpenSSL private (rsa) key component and returns a RSACryptoServiceProvider. (based on http://www.jensign.com/opensslkey/opensslkey.cs)</Summary>
-    <VersionPrefix>1.0.1.0</VersionPrefix>
+    <VersionPrefix>1.0.1.1</VersionPrefix>
     <Authors>Stef Heyenrath</Authors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageTags>OpenSSL;private;privatekey;key;RSA;decoder;RSACryptoServiceProvider</PackageTags>
