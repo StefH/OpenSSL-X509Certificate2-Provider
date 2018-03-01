@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -142,33 +143,12 @@ namespace ConsoleAppNetCore
             RSACryptoServiceProvider privateKeyCsp = privateKeyDecoder.Decode(privateKeyText);
             var privateParameters = privateKeyCsp.ExportParameters(false);
 
-            if (!CompareByteArrays(publicParameters.Modulus, privateParameters.Modulus)
-                || !CompareByteArrays(publicParameters.Exponent, privateParameters.Exponent))
+            if (!publicParameters.Modulus.SequenceEqual(privateParameters.Modulus)
+                || !publicParameters.Exponent.SequenceEqual(privateParameters.Exponent))
             {
                 throw new Exception("public.key does not match private.key");
             }
         }
-
-        private static bool CompareByteArrays(byte[] arrayA, byte[] arrayB)
-        {
-            if (arrayA.Length != arrayB.Length)
-            {
-                return false;
-            }
-
-            int i = 0;
-            foreach (byte c in arrayA)
-            {
-                if (c != arrayB[i])
-                {
-                    return false;
-                }
-                i++;
-            }
-
-            return true;
-        }
-
 
         //public static void TestPrivateRsaKey()
         //{
