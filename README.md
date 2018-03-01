@@ -13,7 +13,7 @@ Support for the following frameworks:
 * .NET Standard 1.3 (also NET Core 1.1)
 * .NET Standard 2.0 (also NET Core 2.0)
 
-Support for decoding `RSA Private Key` and `Private Key`.
+Support for decoding `RSA Private Key`, `Private Key` and `Public Key`.
 
 ## Example
 
@@ -60,4 +60,19 @@ X509Certificate2 certificate = provider.Certificate;
 
 // Example: use the PrivateKey from the certificate above for signing a JWT token using Jose.Jwt:
 string token = Jose.JWT.Encode(payload, certificate.PrivateKey, JwsAlgorithm.RS256);
+```
+
+### Code example 4 - decode openssl RSA public key into RSAParameters
+If you just want to decode the rsa public key into RSAParameters, use the following code:
+
+Export the public key from the private key with openssl
+```
+openssl rsa -in private.key -out public.key -pubout
+```
+
+```csharp
+string publicKeyText = File.ReadAllText("public.key");
+
+IOpenSSLPublicKeyDecoder decoder = new OpenSSLPublicKeyDecoder();
+RSAParameters parameters = decoder.DecodeParameters(publicKeyText);
 ```

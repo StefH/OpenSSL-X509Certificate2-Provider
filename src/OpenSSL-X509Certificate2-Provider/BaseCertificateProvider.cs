@@ -29,12 +29,12 @@ namespace OpenSSL.X509Certificate2Provider
             string text = publicText.Trim();
             if (text.StartsWith(PublicKeyHeader) && text.EndsWith(PublicKeyFooter))
             {
-                return TextUtil.ExtractBytes(text, PublicKeyHeader, PublicKeyFooter);
+                return DecoderUtils.ExtractBytes(text, PublicKeyHeader, PublicKeyFooter);
             }
 
             if (text.StartsWith(PublicCertificateHeader) && text.EndsWith(PublicCertificateFooter))
             {
-                return TextUtil.ExtractBytes(text, PublicCertificateHeader, PublicCertificateFooter);
+                return DecoderUtils.ExtractBytes(text, PublicCertificateHeader, PublicCertificateFooter);
             }
 
             throw new NotSupportedException();

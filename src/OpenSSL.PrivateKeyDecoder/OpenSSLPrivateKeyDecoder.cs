@@ -50,13 +50,13 @@ namespace OpenSSL.PrivateKeyDecoder
             string text = privateText.Trim();
             if (text.StartsWith(RSAPrivateKeyHeader) && text.EndsWith(RSAPrivateKeyFooter))
             {
-                byte[] data = TextUtil.ExtractBytes(text, RSAPrivateKeyHeader, RSAPrivateKeyFooter);
+                byte[] data = DecoderUtils.ExtractBytes(text, RSAPrivateKeyHeader, RSAPrivateKeyFooter);
                 return DecodeRSAPrivateKey(data);
             }
 
             if (text.StartsWith(PrivateKeyHeader) && text.EndsWith(PrivateKeyFooter))
             {
-                byte[] data = TextUtil.ExtractBytes(text, PrivateKeyHeader, PrivateKeyFooter);
+                byte[] data = DecoderUtils.ExtractBytes(text, PrivateKeyHeader, PrivateKeyFooter);
                 return DecodePrivateKey(data);
             }
 
@@ -98,7 +98,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 }
 
                 byte[] seq = binr.ReadBytes(11);
-                if (!CompareByteArrays(seq, OIDpkcs5PBES2)) // is it a OIDpkcs5PBES2 ?
+                if (!DecoderUtils.CompareByteArrays(seq, OIDpkcs5PBES2)) // is it a OIDpkcs5PBES2 ?
                 {
                     return default(RSAParameters);
                 }
@@ -126,7 +126,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 }
 
                 seq = binr.ReadBytes(11); // read the Sequence OID
-                if (!CompareByteArrays(seq, OIDpkcs5PBKDF2)) // is it a OIDpkcs5PBKDF2 ?
+                if (!DecoderUtils.CompareByteArrays(seq, OIDpkcs5PBKDF2)) // is it a OIDpkcs5PBKDF2 ?
                 {
                     return default(RSAParameters);
                 }
@@ -183,7 +183,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 }
 
                 byte[] seqdes = binr.ReadBytes(10);
-                if (!CompareByteArrays(seqdes, OIDdesEDE3CBC)) // is it a OIDdes-EDE3-CBC ?
+                if (!DecoderUtils.CompareByteArrays(seqdes, OIDdesEDE3CBC)) // is it a OIDdes-EDE3-CBC ?
                 {
                     return default(RSAParameters);
                 }
@@ -290,7 +290,7 @@ namespace OpenSSL.PrivateKeyDecoder
                 }
 
                 byte[] seq = reader.ReadBytes(15);
-                if (!CompareByteArrays(seq, OIDRSAEncryption)) // make sure Sequence for OID is correct
+                if (!DecoderUtils.CompareByteArrays(seq, OIDRSAEncryption)) // make sure Sequence for OID is correct
                 {
                     return default(RSAParameters);
                 }
@@ -352,88 +352,32 @@ namespace OpenSSL.PrivateKeyDecoder
                 // All private key components are Integer sequences
                 var rsaParameters = new RSAParameters();
 
-                int elems = GetIntegerSize(reader);
+                int elems = DecoderUtils.GetIntegerSize(reader);
                 rsaParameters.Modulus = reader.ReadBytes(elems);
 
-                elems = GetIntegerSize(reader);
+                elems = DecoderUtils.GetIntegerSize(reader);
                 rsaParameters.Exponent = reader.ReadBytes(elems);
 
-                elems = GetIntegerSize(reader);
+                elems = DecoderUtils.GetIntegerSize(reader);
                 rsaParameters.D = reader.ReadBytes(elems);
 
-                elems = GetIntegerSize(reader);
+                elems = DecoderUtils.GetIntegerSize(reader);
                 rsaParameters.P = reader.ReadBytes(elems);
 
-                elems = GetIntegerSize(reader);
+                elems = DecoderUtils.GetIntegerSize(reader);
                 rsaParameters.Q = reader.ReadBytes(elems);
 
-                elems = GetIntegerSize(reader);
+                elems = DecoderUtils.GetIntegerSize(reader);
                 rsaParameters.DP = reader.ReadBytes(elems);
 
-                elems = GetIntegerSize(reader);
+                elems = DecoderUtils.GetIntegerSize(reader);
                 rsaParameters.DQ = reader.ReadBytes(elems);
 
-                elems = GetIntegerSize(reader);
+                elems = DecoderUtils.GetIntegerSize(reader);
                 rsaParameters.InverseQ = reader.ReadBytes(elems);
 
                 return rsaParameters;
             }
-        }
-
-        private bool CompareByteArrays(byte[] arrayA, byte[] arrayB)
-        {
-            if (arrayA.Length != arrayB.Length)
-            {
-                return false;
-            }
-
-            int i = 0;
-            foreach (byte c in arrayA)
-            {
-                if (c != arrayB[i])
-                {
-                    return false;
-                }
-                i++;
-            }
-
-            return true;
-        }
-
-        private int GetIntegerSize(BinaryReader reader)
-        {
-            int count;
-            byte bt = reader.ReadByte();
-            if (bt != 0x02) // expect integer
-            {
-                return 0;
-            }
-            bt = reader.ReadByte();
-
-            switch (bt)
-            {
-                case 0x81:
-                    count = reader.ReadByte(); // data size in next byte
-                    break;
-                case 0x82:
-                    byte highbyte = reader.ReadByte();
-                    byte lowbyte = reader.ReadByte();
-                    byte[] modint = { lowbyte, highbyte, 0x00, 0x00 };
-                    count = BitConverter.ToInt32(modint, 0);
-                    break;
-                default:
-                    count = bt; // we already have the data size
-                    break;
-            }
-
-            while (reader.ReadByte() == 0x00)
-            {
-                // remove high order zeros in data
-                count -= 1;
-            }
-
-            reader.BaseStream.Seek(-1, SeekOrigin.Current); // last ReadByte wasn't arrayA removed zero, so back up arrayA byte
-            return count;
-        }
+        }    
     }
 }

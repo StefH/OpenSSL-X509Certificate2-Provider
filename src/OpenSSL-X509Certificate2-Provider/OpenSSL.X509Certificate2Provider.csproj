@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\OpenSSL.PrivateKeyDecoder\TextUtil.cs" Link="TextUtil.cs" />
+    <Compile Include="..\OpenSSL.PrivateKeyDecoder\DecoderUtils.cs" Link="DecoderUtils.cs" />
   </ItemGroup>
 
   <ItemGroup>
