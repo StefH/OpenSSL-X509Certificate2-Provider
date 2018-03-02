@@ -21,8 +21,12 @@ namespace OpenSSL.PublicKeyDecoder
         private const string PublicKeyFooter = "-----END PUBLIC KEY-----";
 
         /// <inheritdoc cref="IOpenSSLPublicKeyDecoder.Decode"/>
-        public RSACryptoServiceProvider Decode(string publicText)
+        public RSACryptoServiceProvider Decode([NotNull] string publicText)
         {
+            if (string.IsNullOrEmpty(publicText))
+            {
+                throw new ArgumentNullException(nameof(publicText));
+            }
             var rsaParameters = DecodeParameters(publicText);
 
             // Create RSACryptoServiceProvider instance
@@ -32,9 +36,9 @@ namespace OpenSSL.PublicKeyDecoder
         }
 
         /// <inheritdoc cref="IOpenSSLPublicKeyDecoder.DecodeParameters"/>
-        public RSAParameters DecodeParameters(string publicText)
+        public RSAParameters DecodeParameters([NotNull] string publicText)
         {
-            if (publicText == null)
+            if (string.IsNullOrEmpty(publicText))
             {
                 throw new ArgumentNullException(nameof(publicText));
             }
@@ -56,8 +60,11 @@ namespace OpenSSL.PublicKeyDecoder
 
             using (var reader = new BinaryReader(memoryStream))
             {
-                var dataType = reader.ReadByte();
-                var fieldLength = DecoderUtils.GetFieldLength(reader);
+                //read the data type
+                reader.ReadByte();
+                
+                //read the field length
+                DecoderUtils.GetFieldLength(reader);
 
                 byte[] seq = reader.ReadBytes(15);
                 if (!DecoderUtils.CompareByteArrays(seq, OIDRSAEncryption)) // make sure Sequence for OID is correct
@@ -65,26 +72,28 @@ namespace OpenSSL.PublicKeyDecoder
                     return default(RSAParameters);
                 }
 
-                var bt = reader.ReadByte();
+                byte bt = reader.ReadByte();
                 if (bt != 0x03) // expect a bit string
                 {
                     return default(RSAParameters);
                 }
 
-                var bitStreamLength = DecoderUtils.GetFieldLength(reader);
+                //read the bitstream length
+                DecoderUtils.GetFieldLength(reader);
                 bt = reader.ReadByte();
                 if (bt != 0x00) // expect a zero for number of bits in the bitstring that are unused
                 {
                     return default(RSAParameters);
                 }
 
-                var dateType = reader.ReadByte();
+                byte dateType = reader.ReadByte();
                 if (dateType != 0x30) // data read as little endian order (actual data order for Sequence is 30 81)
                 {
                     return default(RSAParameters);
                 }
 
-                var sequenceLength = DecoderUtils.GetFieldLength(reader);
+                //read the sequence length
+                DecoderUtils.GetFieldLength(reader);
 
                 var rsaParameters = new RSAParameters();
 

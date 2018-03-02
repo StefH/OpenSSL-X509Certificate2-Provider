@@ -6,13 +6,13 @@ namespace OpenSSL.PrivateKeyDecoder
     internal static class DecoderUtils
     {
         internal static bool CompareByteArrays(byte[] arrayA, byte[] arrayB)
-        {
+        {          
             if (arrayA.Length != arrayB.Length)
             {
                 return false;
             }
 
-            var i = 0;
+            int i = 0;
             foreach (var c in arrayA)
             {
                 if (c != arrayB[i])
@@ -27,7 +27,7 @@ namespace OpenSSL.PrivateKeyDecoder
 
         internal static byte[] ExtractBytes(string text, string header, string footer)
         {
-            var data = text;
+            string data = text;
             data = data.Replace(header, string.Empty);
             data = data.Replace(footer, string.Empty);
 
@@ -36,7 +36,7 @@ namespace OpenSSL.PrivateKeyDecoder
 
         internal static int GetFieldLength(BinaryReader reader)
         {
-            var bt = reader.ReadByte();
+            byte bt = reader.ReadByte();
 
             if (bt <= 0x80)
             {
@@ -49,8 +49,8 @@ namespace OpenSSL.PrivateKeyDecoder
 
             //.net is litte endian, whereas asn.1 is big endian, so just fill the array backwards.
 
-            var bytesToRead = bt & 0x0F;
-            var lengthArray = new byte[4];
+            int bytesToRead = bt & 0x0F;
+            byte[] lengthArray = new byte[4];
 
             for (var i = 4 - bytesToRead; i < 4; i++)
             {
@@ -62,13 +62,13 @@ namespace OpenSSL.PrivateKeyDecoder
 
         internal static int GetIntegerSize(BinaryReader reader)
         {
-            var bt = reader.ReadByte();
+            byte bt = reader.ReadByte();
             if (bt != 0x02) // expect integer
             {
                 return 0;
             }
 
-            var count = GetFieldLength(reader);
+            int count = GetFieldLength(reader);
 
             while (reader.ReadByte() == 0x00)
             {
