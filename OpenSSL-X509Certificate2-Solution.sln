@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenSSL.X509Certificate2Provider", "src\OpenSSL-X509Certificate2-Provider\OpenSSL.X509Certificate2Provider.csproj", "{CB7AD528-D24B-4D2E-AFBF-56FA40C48985}"
 EndProject
@@ -27,7 +27,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenSSL.PrivateKeyDecoder", "src\OpenSSL.PrivateKeyDecoder\OpenSSL.PrivateKeyDecoder.csproj", "{095AE67B-6CE2-4002-86FC-33186D110EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppNetCore", "examples\ConsoleAppNetCore\ConsoleAppNetCore.csproj", "{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppNetCore", "examples\ConsoleAppNetCore\ConsoleAppNetCore.csproj", "{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenSSL.PublicKeyDecoder", "src\OpenSSL.PublicKeyDecoder\OpenSSL.PublicKeyDecoder.csproj", "{B7610962-5D66-4783-B28E-D56990715442}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A1FD0A01-C0F4-4E7F-BBAC-0E67D2075A7A}"
+	ProjectSection(SolutionItems) = preProject
+		src\Common\DecoderUtils.cs = src\Common\DecoderUtils.cs
+		src\Common\SecureStringUtils.cs = src\Common\SecureStringUtils.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +63,10 @@ Global
 		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7610962-5D66-4783-B28E-D56990715442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7610962-5D66-4783-B28E-D56990715442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7610962-5D66-4783-B28E-D56990715442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7610962-5D66-4783-B28E-D56990715442}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +77,8 @@ Global
 		{0726E037-FD07-43DA-B746-BFBA1A932611} = {9BB037AA-C636-4732-9573-914F5BE29F89}
 		{095AE67B-6CE2-4002-86FC-33186D110EED} = {8A9B95AB-7BFA-43F8-A001-9873F18F9534}
 		{4CE17B7D-8C38-4C01-ABD4-CFD5508C2B48} = {9BB037AA-C636-4732-9573-914F5BE29F89}
+		{B7610962-5D66-4783-B28E-D56990715442} = {8A9B95AB-7BFA-43F8-A001-9873F18F9534}
+		{A1FD0A01-C0F4-4E7F-BBAC-0E67D2075A7A} = {8A9B95AB-7BFA-43F8-A001-9873F18F9534}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0E9F0E2-0C5D-441B-854E-F1721CEC88C4}

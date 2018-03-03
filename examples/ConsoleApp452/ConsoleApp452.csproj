@@ -84,6 +84,10 @@
       <Project>{095ae67b-6ce2-4002-86fc-33186d110eed}</Project>
       <Name>OpenSSL.PrivateKeyDecoder</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\OpenSSL.PublicKeyDecoder\OpenSSL.PublicKeyDecoder.csproj">
+      <Project>{b7610962-5d66-4783-b28e-d56990715442}</Project>
+      <Name>OpenSSL.PublicKeyDecoder</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

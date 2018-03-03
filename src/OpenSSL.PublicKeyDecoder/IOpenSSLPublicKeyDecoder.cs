@@ -1,5 +1,4 @@
-﻿using System.Security;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using System.Security.Cryptography;
 
 namespace OpenSSL.PublicKeyDecoder
@@ -14,6 +13,7 @@ namespace OpenSSL.PublicKeyDecoder
         /// </summary>
         /// <param name="publicText">The public (rsa) key text.</param>
         /// <returns>RSACryptoServiceProvider</returns>
+        [PublicAPI]
         RSACryptoServiceProvider Decode([NotNull] string publicText);
 
         /// <summary>
@@ -21,6 +21,7 @@ namespace OpenSSL.PublicKeyDecoder
         /// </summary>
         /// <param name="publicText">The public text.</param>        
         /// <returns>RSAParameters</returns>
+        [PublicAPI]
         RSAParameters DecodeParameters([NotNull] string publicText);
     }
 }

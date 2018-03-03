@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using JetBrains.Annotations;
 
-namespace OpenSSL.PrivateKeyDecoder
+namespace OpenSSL.Common
 {
     /// <summary>
     /// SecureString Utility methods

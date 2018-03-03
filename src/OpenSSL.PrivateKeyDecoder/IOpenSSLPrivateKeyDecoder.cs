@@ -15,6 +15,7 @@ namespace OpenSSL.PrivateKeyDecoder
         /// <param name="privateText">The private (rsa) key text.</param>
         /// <param name="securePassword">The optional password to decrypt this private key.</param>
         /// <returns>RSACryptoServiceProvider</returns>
+        [PublicAPI]
         RSACryptoServiceProvider Decode([NotNull] string privateText, [CanBeNull] SecureString securePassword = null);
 
         /// <summary>
@@ -23,6 +24,7 @@ namespace OpenSSL.PrivateKeyDecoder
         /// <param name="privateText">The private text.</param>
         /// <param name="securePassword">The secure password.</param>
         /// <returns>RSAParameters</returns>
+        [PublicAPI]
         RSAParameters DecodeParameters([NotNull] string privateText, [CanBeNull] SecureString securePassword = null);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
-using OpenSSL.PrivateKeyDecoder;
+using OpenSSL.Common;
 
 namespace OpenSSL.X509Certificate2Provider
 {

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Security;
 using System.Security.Cryptography;
 using JetBrains.Annotations;
-using OpenSSL.PrivateKeyDecoder;
+using OpenSSL.Common;
 
 namespace OpenSSL.PublicKeyDecoder
 {
@@ -16,17 +15,17 @@ namespace OpenSSL.PublicKeyDecoder
         // 1.2.840.113549.1.1.1 - RSA encryption, including the sequence byte and terminal encoded null
         private readonly byte[] OIDRSAEncryption = { 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01, 0x05, 0x00 };
 
-
         private const string PublicKeyHeader = "-----BEGIN PUBLIC KEY-----";
         private const string PublicKeyFooter = "-----END PUBLIC KEY-----";
 
         /// <inheritdoc cref="IOpenSSLPublicKeyDecoder.Decode"/>
-        public RSACryptoServiceProvider Decode([NotNull] string publicText)
+        public RSACryptoServiceProvider Decode(string publicText)
         {
             if (string.IsNullOrEmpty(publicText))
             {
                 throw new ArgumentNullException(nameof(publicText));
             }
+
             var rsaParameters = DecodeParameters(publicText);
 
             // Create RSACryptoServiceProvider instance
@@ -36,7 +35,7 @@ namespace OpenSSL.PublicKeyDecoder
         }
 
         /// <inheritdoc cref="IOpenSSLPublicKeyDecoder.DecodeParameters"/>
-        public RSAParameters DecodeParameters([NotNull] string publicText)
+        public RSAParameters DecodeParameters(string publicText)
         {
             if (string.IsNullOrEmpty(publicText))
             {

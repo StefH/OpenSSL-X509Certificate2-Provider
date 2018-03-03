@@ -4,6 +4,7 @@ Parses OpenSSL public and private key components and returns a **X509Certificate
 | Project | NuGet |
 | ------- | ----- |
 | OpenSSL.PrivateKeyDecoder | [![NuGet Badge](https://buildstats.info/nuget/OpenSSL.PrivateKeyDecoder)](https://www.nuget.org/packages/OpenSSL.PrivateKeyDecoder) |
+| OpenSSL.PublicKeyDecoder | [![NuGet Badge](https://buildstats.info/nuget/OpenSSL.PublicKeyDecoder)](https://www.nuget.org/packages/OpenSSL.PublicKeyDecoder) |
 | OpenSSL.X509Certificate2.Provider | [![NuGet Badge](https://buildstats.info/nuget/OpenSSL.X509Certificate2.Provider)](https://www.nuget.org/packages/OpenSSL.X509Certificate2.Provider) |
 
 Support for the following frameworks:

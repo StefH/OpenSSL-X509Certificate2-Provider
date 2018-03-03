@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace OpenSSL.PrivateKeyDecoder
+namespace OpenSSL.Common
 {
     internal static class DecoderUtils
     {

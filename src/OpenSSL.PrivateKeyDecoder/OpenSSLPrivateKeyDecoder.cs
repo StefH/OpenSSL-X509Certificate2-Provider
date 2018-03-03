@@ -3,6 +3,7 @@ using System.IO;
 using System.Security;
 using System.Security.Cryptography;
 using JetBrains.Annotations;
+using OpenSSL.Common;
 
 namespace OpenSSL.PrivateKeyDecoder
 {
@@ -29,7 +30,7 @@ namespace OpenSSL.PrivateKeyDecoder
         private const string PrivateEncryptedKeyFooter = "-----END ENCRYPTED PRIVATE KEY-----";
 
         /// <inheritdoc cref="IOpenSSLPrivateKeyDecoder.Decode"/>
-        public RSACryptoServiceProvider Decode([NotNull] string privateText, [CanBeNull] SecureString password = null)
+        public RSACryptoServiceProvider Decode(string privateText, SecureString password = null)
         {
             if (string.IsNullOrEmpty(privateText))
             {
@@ -45,7 +46,7 @@ namespace OpenSSL.PrivateKeyDecoder
         }
 
         /// <inheritdoc cref="IOpenSSLPrivateKeyDecoder.DecodeParameters"/>
-        public RSAParameters DecodeParameters([NotNull] string privateText, [CanBeNull] SecureString password = null)
+        public RSAParameters DecodeParameters(string privateText, SecureString password = null)
         {
             if (string.IsNullOrEmpty(privateText))
             {
@@ -383,6 +384,6 @@ namespace OpenSSL.PrivateKeyDecoder
 
                 return rsaParameters;
             }
-        }    
+        }
     }
 }
