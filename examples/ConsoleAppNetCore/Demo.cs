@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml.Linq;
 using OpenSSL.PrivateKeyDecoder;
+using OpenSSL.PublicKeyDecoder;
 using OpenSSL.X509Certificate2Provider;
 
 namespace ConsoleAppNetCore
@@ -122,6 +124,30 @@ namespace ConsoleAppNetCore
             // byte[] hashValue = cryptoServiceProvider.SignData(hello, CryptoConfig.MapNameToOID("SHA256"));
 
             // ShowBytes("hashValue", hashValue);
+        }
+
+        public static void TestPublicKey()
+        {
+            Console.WriteLine("TestPublicKey");
+
+            //load the public key for testing.
+            string publicKeyText = File.ReadAllText("public.key");
+            IOpenSSLPublicKeyDecoder publicKeyDecoder = new OpenSSLPublicKeyDecoder();
+            RSACryptoServiceProvider publicKeyCsp = publicKeyDecoder.Decode(publicKeyText);
+            var publicParameters = publicKeyCsp.ExportParameters(false);
+
+            //load the corresponding private key that matches the public key
+            //to verify that the parameters match
+            string privateKeyText = File.ReadAllText("private.key");
+            IOpenSSLPrivateKeyDecoder privateKeyDecoder = new OpenSSLPrivateKeyDecoder();
+            RSACryptoServiceProvider privateKeyCsp = privateKeyDecoder.Decode(privateKeyText);
+            var privateParameters = privateKeyCsp.ExportParameters(false);
+
+            if (!publicParameters.Modulus.SequenceEqual(privateParameters.Modulus)
+                || !publicParameters.Exponent.SequenceEqual(privateParameters.Exponent))
+            {
+                throw new Exception("public.key does not match private.key");
+            }
         }
 
         //public static void TestPrivateRsaKey()
