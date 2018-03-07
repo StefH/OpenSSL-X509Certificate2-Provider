@@ -22,6 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp452", "examples\C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{B8ED9E5F-D541-4328-A90F-F32DDEA0886A}"
 	ProjectSection(SolutionItems) = preProject
+		GitReleaseNotes.txt = GitReleaseNotes.txt
 		README.md = README.md
 	EndProjectSection
 EndProject
