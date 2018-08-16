@@ -1,14 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp1.1;netcoreapp2.0</TargetFrameworks>
-    <ApplicationIcon>certificate.ico</ApplicationIcon>
+    <TargetFrameworks>netcoreapp1.1</TargetFrameworks>
+    <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\OpenSSL-X509Certificate2-Provider\OpenSSL.X509Certificate2Provider.csproj" />
     <ProjectReference Include="..\..\src\OpenSSL.PrivateKeyDecoder\OpenSSL.PrivateKeyDecoder.csproj" />
     <ProjectReference Include="..\..\src\OpenSSL.PublicKeyDecoder\OpenSSL.PublicKeyDecoder.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="certificate.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="certificate_pub.crt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="private.key">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="public.key">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

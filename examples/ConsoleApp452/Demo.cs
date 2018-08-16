@@ -83,11 +83,12 @@ namespace ConsoleApp452
             // Generated using:
             // openssl req -x509 -sha256 -days 365 -newkey rsa:2048 -keyout pwd_private_temp.key -out pwd_certificate_pub.crt
             // openssl pkcs8 -topk8 -in pwd_private_temp.key -out pwd_private.key
+            // useNamedKeyContainer = false
             // password = abc123
             string certificateText = File.ReadAllText("pwd_certificate_pub.crt");
             string privateKeyText = File.ReadAllText("pwd_private.key");
 
-            ICertificateProvider provider = new CertificateFromFileProvider(certificateText, privateKeyText, SecureStringUtils.Encrypt("abc123"));
+            ICertificateProvider provider = new CertificateFromFileProvider(certificateText, privateKeyText, false, SecureStringUtils.Encrypt("abc123"));
             X509Certificate2 certificate = provider.Certificate;
 
             Console.WriteLine("X509Certificate2:");
