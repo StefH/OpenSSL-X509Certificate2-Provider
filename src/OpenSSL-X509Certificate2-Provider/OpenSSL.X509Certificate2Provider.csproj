@@ -8,7 +8,7 @@
     <AssemblyName>OpenSSL.X509Certificate2.Provider</AssemblyName>
     <Description>Parses OpenSSL public and private (rsa) key components and returns a X509Certificate2 with RSACryptoServiceProvider.</Description>
     <Summary>Parses OpenSSL public and private (rsa) key components and returns a X509Certificate2 with RSACryptoServiceProvider. (based on http://www.jensign.com/opensslkey/opensslkey.cs)</Summary>
-    <VersionPrefix>1.2.0.0</VersionPrefix>
+    <VersionPrefix>1.3.0.0</VersionPrefix>
     <Authors>Stef Heyenrath</Authors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageTags>OpenSSL;X509Certificate2;certificate;certificates;private;private;public;publickey;RSA;X509;RSACryptoServiceProvider;RSAParameters</PackageTags>
@@ -29,6 +29,8 @@
     <GenerateAssemblyFileVersionAttribute>true</GenerateAssemblyFileVersionAttribute>
     <DefaultLanguage>en-us</DefaultLanguage>
     <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
+    <TargetFrameworks>net20;net35;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
+    <RootNamespace>OpenSSL.X509Certificate2Provider</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -36,11 +38,6 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../sign.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <TargetFrameworks>net20;net35;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
-    <RootNamespace>OpenSSL.X509Certificate2Provider</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3' or '$(TargetFramework)' == 'netstandard2.0'">
