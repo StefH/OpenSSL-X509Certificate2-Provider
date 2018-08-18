@@ -12,7 +12,7 @@ Support for the following frameworks:
 * .NET 3.5
 * .NET 4.5 and up
 * .NET Standard 1.3 (also NET Core 1.1)
-* .NET Standard 2.0 (also NET Core 2.0)
+* .NET Standard 2.0 (also NET Core 2.0 and 2.1)
 
 Support for decoding `RSA Private Key`, `Private Key` and `Public Key`.
 

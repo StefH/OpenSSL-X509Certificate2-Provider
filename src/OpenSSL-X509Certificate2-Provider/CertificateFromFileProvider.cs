@@ -1,9 +1,9 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using OpenSSL.PrivateKeyDecoder;
+using System;
 using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using JetBrains.Annotations;
-using OpenSSL.PrivateKeyDecoder;
 
 namespace OpenSSL.X509Certificate2Provider
 {
@@ -14,12 +14,25 @@ namespace OpenSSL.X509Certificate2Provider
     public class CertificateFromFileProvider : BaseCertificateProvider, ICertificateProvider
     {
         /// <summary>
-        /// CertificateFromFileProvider
+        /// Initializes a new instance of the <see cref="CertificateFromFileProvider"/> class.
         /// </summary>
         /// <param name="certificateText">The certificate or public key text.</param>
         /// <param name="privateKeyText">The private (rsa) key text.</param>
         /// <param name="securePassword">The optional securePassword to decrypt the private key.</param>
-        public CertificateFromFileProvider([NotNull] string certificateText, [NotNull] string privateKeyText, [CanBeNull] SecureString securePassword = null)
+        public CertificateFromFileProvider([NotNull] string certificateText, [NotNull] string privateKeyText, [NotNull] SecureString securePassword) :
+            this(certificateText, privateKeyText, false, securePassword)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CertificateFromFileProvider"/> class.
+        /// </summary>
+        /// <param name="certificateText">The certificate or public key text.</param>
+        /// <param name="privateKeyText">The private (rsa) key text.</param>
+        /// <param name="useKeyContainer">Store the private key in a key container. <see href="https://docs.microsoft.com/en-us/dotnet/standard/security/how-to-store-asymmetric-keys-in-a-key-container" /></param>
+        /// <param name="securePassword">The optional securePassword to decrypt the private key.</param>
+        /// <exception cref="ArgumentNullException">certificateText or privateKeyText</exception>
+        public CertificateFromFileProvider([NotNull] string certificateText, [NotNull] string privateKeyText, bool useKeyContainer = false, [CanBeNull] SecureString securePassword = null)
         {
             if (certificateText == null)
             {
@@ -39,7 +52,19 @@ namespace OpenSSL.X509Certificate2Provider
 #endif
 
             IOpenSSLPrivateKeyDecoder decoder = new OpenSSLPrivateKeyDecoder();
-            PrivateKey = decoder.Decode(privateKeyText, securePassword);
+            var privateKey = decoder.Decode(privateKeyText, securePassword);
+
+            if (useKeyContainer)
+            {
+                var cspParameters = new CspParameters { KeyContainerName = $"{{{Guid.NewGuid()}}}" };
+                var cspPrivateKey = new RSACryptoServiceProvider(cspParameters);
+                cspPrivateKey.ImportParameters(privateKey.ExportParameters(true));
+                PrivateKey = cspPrivateKey;
+            }
+            else
+            {
+                PrivateKey = privateKey;
+            }
 
 #if !NETSTANDARD
             Certificate.PrivateKey = PrivateKey;
