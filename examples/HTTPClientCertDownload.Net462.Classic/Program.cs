@@ -2,9 +2,10 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace HTTPClientCertDownload.Net462.Classic
+namespace HTTPClientCertDownload
 {
     class Program
     {
@@ -25,7 +26,14 @@ namespace HTTPClientCertDownload.Net462.Classic
             req.PreAuthenticate = true;
 
             ICertificateProvider provider = new CertificateFromFileProvider(certificateText, privateKeyText, true);
-            req.ClientCertificates.Add(provider.Certificate);
+
+#if NETCOREAPP2_0
+            // https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.rsacertificateextensions.copywithprivatekey?redirectedfrom=MSDN&view=netcore-2.0#System_Security_Cryptography_X509Certificates_RSACertificateExtensions_CopyWithPrivateKey_System_Security_Cryptography_X509Certificates_X509Certificate2_System_Security_Cryptography_RSA_
+            X509Certificate2 certificate = RSACertificateExtensions.CopyWithPrivateKey(provider.Certificate, provider.PrivateKey);
+#else
+            X509Certificate2 certificate = provider.Certificate;
+#endif
+            req.ClientCertificates.Add(certificate);
 
             HttpWebResponse response = (HttpWebResponse)req.GetResponse();
 

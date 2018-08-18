@@ -59,10 +59,10 @@ namespace OpenSSL.PublicKeyDecoder
 
             using (var reader = new BinaryReader(memoryStream))
             {
-                //read the data type
+                // read the data type
                 reader.ReadByte();
-                
-                //read the field length
+
+                // read the field length
                 DecoderUtils.GetFieldLength(reader);
 
                 byte[] seq = reader.ReadBytes(15);
@@ -77,7 +77,7 @@ namespace OpenSSL.PublicKeyDecoder
                     return default(RSAParameters);
                 }
 
-                //read the bitstream length
+                // read the bitstream length
                 DecoderUtils.GetFieldLength(reader);
                 bt = reader.ReadByte();
                 if (bt != 0x00) // expect a zero for number of bits in the bitstring that are unused
@@ -91,7 +91,7 @@ namespace OpenSSL.PublicKeyDecoder
                     return default(RSAParameters);
                 }
 
-                //read the sequence length
+                // read the sequence length
                 DecoderUtils.GetFieldLength(reader);
 
                 var rsaParameters = new RSAParameters();

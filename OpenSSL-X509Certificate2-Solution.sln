@@ -8,15 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8A9B95AB-7BFA-43F8-A001-9873F18F9534}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9BB037AA-C636-4732-9573-914F5BE29F89}"
-	ProjectSection(SolutionItems) = preProject
-		examples\certificate_pub.crt = examples\certificate_pub.crt
-		examples\crt.pem = examples\crt.pem
-		examples\key.pem = examples\key.pem
-		examples\private.key = examples\private.key
-		examples\private_rsa.key = examples\private_rsa.key
-		examples\pwd_certificate_pub.crt = examples\pwd_certificate_pub.crt
-		examples\pwd_private.key = examples\pwd_private.key
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "examples\ConsoleApp\ConsoleApp.csproj", "{5E14342F-0878-41DA-A3D6-3A25E044CF17}"
 EndProject
@@ -24,6 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp452", "examples\C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{B8ED9E5F-D541-4328-A90F-F32DDEA0886A}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
 		GitReleaseNotes.txt = GitReleaseNotes.txt
 		README.md = README.md
 	EndProjectSection
@@ -43,6 +35,21 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppNetCore2", "examples\ConsoleAppNetCore2\ConsoleAppNetCore2.csproj", "{25D0BA95-A395-4571-B441-465B30F20FEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTPClientCertDownload.Net462.Classic", "examples\HTTPClientCertDownload.Net462.Classic\HTTPClientCertDownload.Net462.Classic.csproj", "{F38849E2-265B-40AE-8430-DAB55E26C76A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keys", "keys", "{40EAA2C2-9E01-4BB8-9FB4-0ACBF23BCF2E}"
+	ProjectSection(SolutionItems) = preProject
+		examples\certificate_pub.crt = examples\certificate_pub.crt
+		examples\crt.pem = examples\crt.pem
+		examples\key.pem = examples\key.pem
+		examples\private.key = examples\private.key
+		examples\private_rsa.key = examples\private_rsa.key
+		examples\pwd_certificate_pub.crt = examples\pwd_certificate_pub.crt
+		examples\pwd_private.key = examples\pwd_private.key
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTPClientCertDownload.Net462", "examples\HTTPClientCertDownload.Net462\HTTPClientCertDownload.Net462.csproj", "{6E77098B-C643-46E8-B0AB-229E87DD45EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTTPClientCertDownload.NetCore2", "examples\HTTPClientCertDownload.NetCore2\HTTPClientCertDownload.NetCore2.csproj", "{8EFE7FA8-2676-4BAA-9973-8F0C90BFF6D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +89,14 @@ Global
 		{F38849E2-265B-40AE-8430-DAB55E26C76A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F38849E2-265B-40AE-8430-DAB55E26C76A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F38849E2-265B-40AE-8430-DAB55E26C76A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E77098B-C643-46E8-B0AB-229E87DD45EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E77098B-C643-46E8-B0AB-229E87DD45EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E77098B-C643-46E8-B0AB-229E87DD45EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E77098B-C643-46E8-B0AB-229E87DD45EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EFE7FA8-2676-4BAA-9973-8F0C90BFF6D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EFE7FA8-2676-4BAA-9973-8F0C90BFF6D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EFE7FA8-2676-4BAA-9973-8F0C90BFF6D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EFE7FA8-2676-4BAA-9973-8F0C90BFF6D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +111,8 @@ Global
 		{A1FD0A01-C0F4-4E7F-BBAC-0E67D2075A7A} = {8A9B95AB-7BFA-43F8-A001-9873F18F9534}
 		{25D0BA95-A395-4571-B441-465B30F20FEE} = {9BB037AA-C636-4732-9573-914F5BE29F89}
 		{F38849E2-265B-40AE-8430-DAB55E26C76A} = {9BB037AA-C636-4732-9573-914F5BE29F89}
+		{6E77098B-C643-46E8-B0AB-229E87DD45EC} = {9BB037AA-C636-4732-9573-914F5BE29F89}
+		{8EFE7FA8-2676-4BAA-9973-8F0C90BFF6D7} = {9BB037AA-C636-4732-9573-914F5BE29F89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0E9F0E2-0C5D-441B-854E-F1721CEC88C4}

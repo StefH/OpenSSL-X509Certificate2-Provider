@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Xml;
 using JetBrains.Annotations;
 
-namespace OpenSSL.X509Certificate2Provider
+namespace OpenSSL.PrivateKeyDecoder
 {
     /// <summary>
     /// Based on https://gist.github.com/Jargon64/5b172c452827e15b21882f1d76a94be4

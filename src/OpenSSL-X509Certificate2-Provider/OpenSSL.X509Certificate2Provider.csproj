@@ -56,8 +56,4 @@
     <ProjectReference Include="..\OpenSSL.PrivateKeyDecoder\OpenSSL.PrivateKeyDecoder.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-    <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
-  </ItemGroup>
-
 </Project>
