@@ -89,5 +89,19 @@
       <Name>OpenSSL.PublicKeyDecoder</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\server-cert.1.txt">
+      <Link>server-cert.1.txt</Link>
+    </Content>
+    <Content Include="..\server-cert.2.txt">
+      <Link>server-cert.2.txt</Link>
+    </Content>
+    <Content Include="..\server-cert.pem.txt">
+      <Link>server-cert.pem.txt</Link>
+    </Content>
+    <Content Include="..\server-key.pem.txt">
+      <Link>server-key.pem.txt</Link>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
