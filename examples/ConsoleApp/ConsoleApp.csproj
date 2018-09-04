@@ -11,6 +11,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="..\server-cert.1.txt" Link="server-cert.1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\server-cert.2.txt" Link="server-cert.2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\server-key.pem.txt" Link="server-key.pem.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\OpenSSL-X509Certificate2-Provider\OpenSSL.X509Certificate2Provider.csproj" />
     <ProjectReference Include="..\..\src\OpenSSL.PrivateKeyDecoder\OpenSSL.PrivateKeyDecoder.csproj" />
     <ProjectReference Include="..\..\src\OpenSSL.PublicKeyDecoder\OpenSSL.PublicKeyDecoder.csproj" />

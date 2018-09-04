@@ -12,6 +12,47 @@ namespace ConsoleApp452
 {
     public static class Demo
     {
+        public static void Issue7()
+        {
+            Console.WriteLine("Issue7");
+            if (!File.Exists("server-cert.1.txt"))
+            {
+                return;
+            }
+
+            string privateKeyText = File.ReadAllText("server-key.pem.txt");
+
+            // 1
+            string certificateText = File.ReadAllText("server-cert.1.txt");
+            ICertificateProvider provider = new CertificateFromFileProvider(certificateText, privateKeyText);
+            X509Certificate2 certificate = provider.Certificate;
+
+            Console.WriteLine("Issue7 - Certificate 1:");
+            Console.WriteLine(certificate);
+            Console.WriteLine();
+            Console.WriteLine("Issue7 - PrivateKey 1:");
+            RSACryptoServiceProvider cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PrivateKey;
+            ShowRSAProperties(cryptoServiceProvider);
+
+            var xml = XDocument.Parse(cryptoServiceProvider.ToXmlString(true));
+            Console.WriteLine(xml.ToString());
+
+            // 2
+            certificateText = File.ReadAllText("server-cert.1.txt");
+            provider = new CertificateFromFileProvider(certificateText, privateKeyText);
+            certificate = provider.Certificate;
+
+            Console.WriteLine("Issue7 - Certificate 2:");
+            Console.WriteLine(certificate);
+            Console.WriteLine();
+            Console.WriteLine("Issue7 - PrivateKey 2:");
+            cryptoServiceProvider = (RSACryptoServiceProvider)certificate.PrivateKey;
+            ShowRSAProperties(cryptoServiceProvider);
+
+            xml = XDocument.Parse(cryptoServiceProvider.ToXmlString(true));
+            Console.WriteLine(xml.ToString());
+        }
+
         public static void TestX509Certificate2()
         {
             Console.WriteLine("TestX509Certificate2");
