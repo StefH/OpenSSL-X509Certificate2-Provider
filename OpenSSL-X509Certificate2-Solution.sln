@@ -16,7 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{B8ED9E5F-D541-4328-A90F-F32DDEA0886A}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.md = CHANGELOG.md
-		GitReleaseNotes.txt = GitReleaseNotes.txt
+		Directory.Build.props = Directory.Build.props
+		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -47,7 +48,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keys", "keys", "{40EAA2C2-9
 		examples\pwd_private.key = examples\pwd_private.key
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTPClientCertDownload.Net462", "examples\HTTPClientCertDownload.Net462\HTTPClientCertDownload.Net462.csproj", "{6E77098B-C643-46E8-B0AB-229E87DD45EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTTPClientCertDownload.Net462", "examples\HTTPClientCertDownload.Net462\HTTPClientCertDownload.Net462.csproj", "{6E77098B-C643-46E8-B0AB-229E87DD45EC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTTPClientCertDownload.NetCore2", "examples\HTTPClientCertDownload.NetCore2\HTTPClientCertDownload.NetCore2.csproj", "{8EFE7FA8-2676-4BAA-9973-8F0C90BFF6D7}"
 EndProject
