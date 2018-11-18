@@ -30,14 +30,14 @@ namespace OpenSSL.PrivateKeyDecoder
         private const string PrivateEncryptedKeyFooter = "-----END ENCRYPTED PRIVATE KEY-----";
 
         /// <inheritdoc cref="IOpenSSLPrivateKeyDecoder.Decode"/>
-        public RSACryptoServiceProvider Decode(string privateText, SecureString password = null)
+        public RSACryptoServiceProvider Decode(string privateText, SecureString securePassword = null)
         {
             if (string.IsNullOrEmpty(privateText))
             {
                 throw new ArgumentNullException(nameof(privateText));
             }
 
-            var rsaParameters = DecodeParameters(privateText, password);
+            var rsaParameters = DecodeParameters(privateText, securePassword);
 
             // Create RSACryptoServiceProvider instance
             var rsaCryptoServiceProvider = new RSACryptoServiceProvider();
@@ -46,7 +46,7 @@ namespace OpenSSL.PrivateKeyDecoder
         }
 
         /// <inheritdoc cref="IOpenSSLPrivateKeyDecoder.DecodeParameters"/>
-        public RSAParameters DecodeParameters(string privateText, SecureString password = null)
+        public RSAParameters DecodeParameters(string privateText, SecureString securePassword = null)
         {
             if (string.IsNullOrEmpty(privateText))
             {
