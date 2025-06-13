@@ -8,25 +8,7 @@
     <AssemblyName>OpenSSL.PublicKeyDecoder</AssemblyName>
     <Description>Parses an OpenSSL public (rsa) key component and returns a RSACryptoServiceProvider or RSAParameters.</Description>
     <Summary>Parses an OpenSSL public (rsa) key component and returns a RSACryptoServiceProvider or RSAParameters.</Summary>
-    <Authors>Stef Heyenrath</Authors>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageTags>OpenSSL;public;publickey;key;RSA;decoder;RSACryptoServiceProvider;RSAParameters</PackageTags>
-    <PackageReleaseNotes>Initial version</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/StefH/OpenSSL-X509Certificate2-Provider</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/OpenSSL-X509Certificate2-Provider/master/LICENSE</PackageLicenseUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/StefH/OpenSSL-X509Certificate2-Provider/master/images/certificate.png</PackageIconUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/StefH/OpenSSL-X509Certificate2-Provider</RepositoryUrl>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
-    <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>true</GenerateAssemblyFileVersionAttribute>
-    <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

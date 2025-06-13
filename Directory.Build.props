@@ -4,7 +4,23 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>1.4.0.0</VersionPrefix>
+    <Version>1.3.0.1</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>certificate.png</PackageIcon>
+    <PackageReadmeFile>PackageReadme.md</PackageReadmeFile>
+    <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
+    <PackageReleaseNotes>See CHANGELOG.md</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/StefH/OpenSSL-X509Certificate2-Provider</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/StefH/OpenSSL-X509Certificate2-Provider</RepositoryUrl>
+    <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
+    <Authors>Stef Heyenrath</Authors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../images/certificate.png" Pack="true" PackagePath="" />
+    <None Include="../../PackageReadme.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 
 </Project>

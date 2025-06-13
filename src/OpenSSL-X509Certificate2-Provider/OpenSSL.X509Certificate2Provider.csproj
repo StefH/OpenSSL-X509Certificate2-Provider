@@ -8,26 +8,8 @@
     <AssemblyName>OpenSSL.X509Certificate2.Provider</AssemblyName>
     <Description>Parses OpenSSL public and private (rsa) key components and returns a X509Certificate2 with RSACryptoServiceProvider.</Description>
     <Summary>Parses OpenSSL public and private (rsa) key components and returns a X509Certificate2 with RSACryptoServiceProvider. (based on http://www.jensign.com/opensslkey/opensslkey.cs)</Summary>
-    <Authors>Stef Heyenrath</Authors>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageTags>OpenSSL;X509Certificate2;certificate;certificates;private;private;public;publickey;RSA;X509;RSACryptoServiceProvider;RSAParameters</PackageTags>
-    <PackageReleaseNotes>See release notes.</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/StefH/OpenSSL-X509Certificate2-Provider</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/OpenSSL-X509Certificate2-Provider/master/LICENSE</PackageLicenseUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/StefH/OpenSSL-X509Certificate2-Provider/master/images/certificate.png</PackageIconUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/StefH/OpenSSL-X509Certificate2-Provider</RepositoryUrl>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
-    <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>true</GenerateAssemblyFileVersionAttribute>
     <DefaultLanguage>en-us</DefaultLanguage>
-    <ApplicationIcon>../../images/certificate.ico</ApplicationIcon>
     <TargetFrameworks>net20;net35;net45;netstandard1.3;netstandard2.0</TargetFrameworks>
     <RootNamespace>OpenSSL.X509Certificate2Provider</RootNamespace>
   </PropertyGroup>

@@ -47,7 +47,7 @@ namespace OpenSSL.Common
             //when 0x8? is specified, the value after the 8 is the number of bytes to read for the length
             //we are going to assume up to 4 bytes since anything bigger is ridiculous, and 4 translates nicely to an integer
 
-            //.net is litte endian, whereas asn.1 is big endian, so just fill the array backwards.
+            //.net is little endian, whereas asn.1 is big endian, so just fill the array backwards.
 
             int bytesToRead = bt & 0x0F;
             byte[] lengthArray = new byte[4];

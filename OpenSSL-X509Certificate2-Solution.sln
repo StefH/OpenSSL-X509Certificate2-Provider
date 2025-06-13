@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenSSL.X509Certificate2Provider", "src\OpenSSL-X509Certificate2-Provider\OpenSSL.X509Certificate2Provider.csproj", "{CB7AD528-D24B-4D2E-AFBF-56FA40C48985}"
 EndProject
@@ -17,7 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.md = CHANGELOG.md
 		Directory.Build.props = Directory.Build.props
-		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
+		GenerateReleaseNotes.cmd = GenerateReleaseNotes.cmd
+		PackageReadme.md = PackageReadme.md
 		README.md = README.md
 	EndProjectSection
 EndProject
